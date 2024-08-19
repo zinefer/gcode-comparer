@@ -1,0 +1,17 @@
+// src/theme.scss
+
+@import 'base';
+
+// Default to light theme
+body {
+  background-color: $light-background;
+  color: $light-text;
+}
+
+// Apply dark theme based on system settings
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $dark-background;
+    color: $dark-text;
+  }
+}
