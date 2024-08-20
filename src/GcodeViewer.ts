@@ -21,9 +21,10 @@ const highlightingPatterns: { [key: string]: HighlightPattern[] | HighlightPatte
       { name: "gcode-zcode", match: "[rRzZ][ \\t]*[\\-\\+]?[0-9\\.]+", flags: "gi" },
       { name: "gcode-xcode", match: "[XAUI][ \\t]*[\\-\\+]?[0-9\\.]+", flags: "gi" },
       { name: "gcode-ycode", match: "[YBVJ][ \\t]*[\\-\\+]?[0-9\\.]+", flags: "gi" },
+      { name: "gcode-string", match: '"[^"]*"', flags: "g" },
       { name: "gcode-mcode-supportfunction", match: "[mM][ \\t]*[0-9][0-9\\.]*", flags: "g" },
-      { name: "gcode-supporttype", match: "[dDfFhHsStT][ \\t]*[0-9][0-9\\.]*", flags: "g" },
-      { name: "gcode-variable-parameter", match: "[pPqQeE][ \\t]*[0-9][0-9\\.]*", flags: "g" },
+      { name: "gcode-supporttype", match: "[dDfFhHsStTW][ \\t]*[0-9]?[0-9\\.]*", flags: "g" },
+      { name: "gcode-variable-parameter", match: "[pPqQeE][ \\t]*[0-9]?[0-9\\.]*", flags: "g" },
       { name: "gcode-mcode", match: "[cCwWkKlL][ \\t]*[\\-\\+]?[0-9\\.]+", flags: "g" }
   ],
   strings: {
@@ -122,7 +123,7 @@ export default class GcodeViewer {
 
     public render(): string {
         const highlightedCode = this.applyHighlighting(this.code, highlightingPatterns);
-        return `<pre><code>${highlightedCode}</code></pre>`;
+        return `<pre class="diff"><code>${highlightedCode}</code></pre>`;
     }
 }
 

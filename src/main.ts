@@ -1,19 +1,14 @@
+import App from './App';
 import ComparisonResultView from './ComparisonResultView';
 
 import './styles/main.scss';
 
+let app;
 document.addEventListener('DOMContentLoaded', () => {
-  const leftColumn = document.querySelector('#left-column');
-  const rightColumn = document.querySelector('#right-column');
-
-  const leftComparisonResultView = new ComparisonResultView('Ours');
-  const rightComparisonResultView = new ComparisonResultView('Theirs');
-
-  if (leftColumn) {
-    leftColumn.innerHTML = leftComparisonResultView.render();
-  }
-
-  if (rightColumn) {
-    rightColumn.innerHTML = rightComparisonResultView.render();
+  const appContainer = document.querySelector('#app');
+  if (appContainer) {
+    app = new App(appContainer);
+  } else {
+    throw new Error('App container not found');
   }
 });

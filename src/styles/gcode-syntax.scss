@@ -21,7 +21,6 @@
 /* Y20.0 - Y-axis movement */
 .gcode-ycode {
   color: #ffd700; /* Gold */
-  font-style: italic;
 }
 
 /* M03 - Spindle on (clockwise) */
@@ -42,6 +41,11 @@
 /* C1 - Custom M-code */
 .gcode-mcode {
   color: #ff4500; /* OrangeRed */
+}
+
+/* "Some string" - String literals */
+.gcode-string {
+  color: #d33682; /* Magenta */
 }
 
 /* (This is a comment) or ;This is a comment */
