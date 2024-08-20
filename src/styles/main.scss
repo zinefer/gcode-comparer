@@ -1,16 +1,60 @@
 @import 'theme';
 
+html, body, #app {
+  height: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+}
+
+.column{
+  background-color: var(--color-background-soft);
+  border: 1px solid var(--color-border);
 }
 
 #app {
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.column {
+  flex: 1;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  padding: 10px;
+  margin: 8px;
 }
 
 input[type="file"] {
-  margin: 10px;
+  margin: 10px 0;
+}
+
+.stats {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-background-mute);
+}
+
+.diff {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  //background-color: var(--color-background-mute);
+  overflow-y: scroll;
+  //white-space: pre;
+  flex: 1;
+  resize: none;
+  scrollbar-color: var(--color-border) var(--color-background-mute);
 }

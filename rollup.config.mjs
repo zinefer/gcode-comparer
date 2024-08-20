@@ -12,15 +12,15 @@ export default {
   input: 'src/main.ts',
   output: {
     file: 'dist/bundle.js',
-    format: 'iife',
-    sourcemap: true
+    sourcemap: true,
+    inlineDynamicImports: true,
   },
   plugins: [
     resolve(),
     commonjs(),
     typescript(),
     scss({
-      output: 'dist/styles/main.css'
+      fileName: 'styles/main.css',
     }),
     copy({
       targets: [

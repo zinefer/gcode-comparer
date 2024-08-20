@@ -1,0 +1,51 @@
+/* N100 - Line number */
+.gcode-constant {
+  color: #1abc9c; /* Light Green */
+}
+
+/* G01 - Linear interpolation */
+.gcode-keyword {
+  color: #d73a49; /* Red */
+}
+
+/* Z-1.0 - Z-axis movement */
+.gcode-zcode {
+  color: #6f42c1; /* Purple */
+}
+
+/* X10.0 - X-axis movement */
+.gcode-xcode {
+  color: #005cc5; /* Blue */
+}
+
+/* Y20.0 - Y-axis movement */
+.gcode-ycode {
+  color: #ffd700; /* Gold */
+  font-style: italic;
+}
+
+/* M03 - Spindle on (clockwise) */
+.gcode-mcode-supportfunction {
+  color: #e36209; /* Orange */
+}
+
+/* F1500 - Feed rate */
+.gcode-supporttype {
+  color: #0366d6; /* Dark Blue */
+}
+
+/* P1 - Dwell time */
+.gcode-variable-parameter {
+  color: #b31d28; /* Dark Red */
+}
+
+/* C1 - Custom M-code */
+.gcode-mcode {
+  color: #ff4500; /* OrangeRed */
+}
+
+/* (This is a comment) or ;This is a comment */
+.gcode-comment {
+  color: #22863a; /* Green */
+  font-style: italic;
+}

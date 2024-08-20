@@ -1,17 +1,16 @@
-// src/theme.scss
-
 @import 'base';
-
-// Default to light theme
-body {
-  background-color: $light-background;
-  color: $light-text;
-}
 
 // Apply dark theme based on system settings
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: $dark-background;
-    color: $dark-text;
+  :root {
+    --color-background: #{$black};
+    --color-background-soft: #{$black-soft};
+    --color-background-mute: #{$black-mute};
+
+    --color-border: #{$divider-dark-2};
+    --color-border-hover: #{$divider-dark-1};
+
+    --color-heading: #{$text-dark-1};
+    --color-text: #{$text-dark-2};
   }
 }
