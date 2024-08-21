@@ -41,5 +41,8 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "dependencies": {
+    "hash-wasm": "^4.11.0"
+  }
 }
