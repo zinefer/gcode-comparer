@@ -1,5 +1,6 @@
 import Column from "./Column";
 import ComparisonResultView from "./ComparisonResultView";
+import GettingStartedView from "./GettingStartedView";
 
 export default class App {
 
@@ -24,6 +25,10 @@ export default class App {
     });
     this.rightColumn = new Column(() => {
       return new ComparisonResultView('Theirs').render();
+    });
+    
+    this.gettingStarted = new GettingStartedView((e) => {
+      alert('File changed');
     });
 
     this.render();
