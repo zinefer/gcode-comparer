@@ -40,8 +40,8 @@ export default class GcodeViewer {
         this.code = code;
     }
 
-    private applyHighlighting(code: string, patterns: { [key: string]: HighlightPattern[] | HighlightPattern }): string {
-        let matches: Match[] = [];
+    private applyHighlighting(code: string, patterns: { [key: string]: HighlightPattern[] | HighlightPattern }): DocumentFragment {
+      let matches: Match[] = [];
 
         // 1. Apply non-comment patterns first
         for (const category of Object.values(patterns)) {
@@ -104,26 +104,40 @@ export default class GcodeViewer {
             return acc;
         }, []);
 
-        // 5. Apply the matches to the code by wrapping them in <span> tags
-        let highlightedCode = '';
-        let lastIndex = 0;
+      // 5. Create a DocumentFragment and apply the matches to the code
+      const fragment = document.createDocumentFragment();
+      let lastIndex = 0;
 
-        for (const match of matches) {
-            // Append text before the match
-            highlightedCode += code.slice(lastIndex, match.start);
-            // Wrap the match in a span with the class name
-            highlightedCode += `<span class="${match.className}">${code.slice(match.start, match.end)}</span>`;
-            lastIndex = match.end;
-        }
-        // Append the remaining text after the last match
-        highlightedCode += code.slice(lastIndex);
+      for (const match of matches) {
+          // Append text before the match
+          if (lastIndex < match.start) {
+              fragment.appendChild(document.createTextNode(code.slice(lastIndex, match.start)));
+          }
+          // Wrap the match in a span with the class name
+          const span = document.createElement('span');
+          span.className = match.className;
+          span.textContent = code.slice(match.start, match.end);
+          fragment.appendChild(span);
+          lastIndex = match.end;
+      }
+      // Append the remaining text after the last match
+      if (lastIndex < code.length) {
+          fragment.appendChild(document.createTextNode(code.slice(lastIndex)));
+      }
 
-        return highlightedCode;
+      return fragment;
     }
 
-    public render(): string {
+    public render(): HTMLPreElement {
         const highlightedCode = this.applyHighlighting(this.code, highlightingPatterns);
-        return `<pre class="diff"><code>${highlightedCode}</code></pre>`;
+
+        const code = document.createElement('code');
+        code.appendChild(highlightedCode);
+
+        const pre = document.createElement('pre');
+        pre.className = 'diff';
+        pre.appendChild(code);
+        return pre;
     }
 }
 

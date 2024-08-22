@@ -72,37 +72,39 @@ M05`
 let highlightedCode = new GcodeViewer(code).render();
 
 export default class ComparisonResultView {
-  //private element: HTMLDivElement;
-
-  private title: string;
+  private fragment: DocumentFragment;
+  private header: HTMLHeadingElement;
 
   constructor(title: string) {
-      this.title = title;
+    this.fragment = document.createDocumentFragment();
+    this.header = document.createElement('h2');
+    this.header.textContent = title;
   }
     
   render() {
-    return `
-      <h2>${this.title}</h2>
-      <!-- <input type="file" id="file1" /> -->
-      <div class="stats" id="stats1">a
-        <div class="stat">
-          <span>Lines</span>
-          <span>231</span>
-        </div>
-        <div class="stat">
-          <span>Words</span>
-          <span>231</span>
-        </div>
-        <div class="stat">
-          <span>Chars</span>
-          <span>231</span>
-        </div>
+    this.fragment.appendChild(this.header);
+
+    const statsContainer = new HTMLDivElement();
+    statsContainer.className = 'stats';
+    statsContainer.innerHTML = `
+      <div class="stat">
+        <span>Lines</span>
+        <span>231</span>
       </div>
-      <!--<textarea class="diff" id="diff1" readonly></textarea>-->
-      <!--<code class="diff language-js">
-        ${highlightedCode}
-      </code>-->
-      ${highlightedCode}
+      <div class="stat">
+        <span>Words</span>
+        <span>231</span>
+      </div>
+      <div class="stat">
+        <span>Chars</span>
+        <span>231</span>
+      </div>
     `;
+
+    this.fragment.appendChild(statsContainer);
+
+    this.fragment.appendChild(highlightedCode);
+
+    return this.fragment;
   }
 }

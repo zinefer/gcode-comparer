@@ -94,11 +94,11 @@ export default class Comparitor {
   }
 
   isLineComment(line: string) {
-    return line.startsWith(';');
+    return line.trim().startsWith(';');
   }
 
   isLineCommand(line: string) {
-    return !line.startsWith(';');
+    return !line.trim().startsWith(';');
   }
 
   isToolChange(line: string) {

@@ -3,20 +3,17 @@ import ComparisonResultView from "./ComparisonResultView";
 import GettingStartedView from "./GettingStartedView";
 
 export default class App {
-
+  // Layout
   private appContainer: Element;
-
-  private leftFile = false;
-  private rightFile = false;
-
-  // <div class="column" id="left-column"></div>
-  // <div class="column" id="right-column"></div>
   private leftColumn;
   private rightColumn;
 
-  private gettingStarted = {
-    render: () => ''
-  }
+  // State
+  private leftFile = false;
+  private rightFile = false;
+
+  // Views
+  private gettingStarted;
 
   constructor(appContainer: Element) {
     this.appContainer = appContainer;
@@ -35,21 +32,26 @@ export default class App {
   }
 
   render() {
-    let content = '';
+    //let content = '';
+    const content: Element[] = [];
+
+    this.appContainer.innerHTML = '';
 
     // if (this.leftFile) {
-      content += this.leftColumn.render();
+      content.push(this.leftColumn.render());
     // }
 
     // if (this.rightFile) {
-      content += this.rightColumn.render();
+      content.push(this.rightColumn.render());
     // }
 
-    if (!this.leftFile && !this.rightFile) {
-      content += this.gettingStarted.render();
-    }
+    // if (!this.leftFile && !this.rightFile) {
+      // content.push(this.gettingStarted.render());
+    // }
 
-    this.appContainer.innerHTML = content;
+    content.forEach((element) => {
+      this.appContainer.appendChild(element);
+    });
   }
 }
 
