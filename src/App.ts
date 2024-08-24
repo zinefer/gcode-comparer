@@ -9,7 +9,7 @@ export default class App {
   private rightColumn;
 
   // State
-  private leftFile = false;
+  private leftFile: File | false = false;
   private rightFile = false;
 
   // Views
@@ -25,36 +25,35 @@ export default class App {
     });
     
     this.gettingStarted = new GettingStartedView((e) => {
-      alert('File changed');
+      const input = e.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.leftFile = input.files[0];
+      }
+      this.render();
     });
 
     this.render();
   }
 
   render() {
-    //let content = '';
     const content: Element[] = [];
 
     this.appContainer.innerHTML = '';
 
-    // if (this.leftFile) {
+    if (this.leftFile !== false) {
       content.push(this.leftColumn.render());
-    // }
+    }
 
-    // if (this.rightFile) {
+    if (this.rightFile) {
       content.push(this.rightColumn.render());
-    // }
+    }
 
-    // if (!this.leftFile && !this.rightFile) {
-      // content.push(this.gettingStarted.render());
-    // }
+    if (!this.leftFile && !this.rightFile) {
+      content.push(this.gettingStarted.render());
+    }
 
     content.forEach((element) => {
       this.appContainer.appendChild(element);
     });
   }
-}
-
-function renderColumn(content: string) {
-  return `<div class="column">${content}}</div>`;
 }

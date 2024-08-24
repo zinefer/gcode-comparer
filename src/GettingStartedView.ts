@@ -11,10 +11,6 @@ export default class GettingStartedView {
   }
 
   render() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.onchange = this.onFileChange;
-
     this.element.innerHTML = `
       <h2 class="header">Getting Started</h2>
       <hr/>
@@ -32,13 +28,22 @@ export default class GettingStartedView {
           This tool will help you compare two gcode files and highlight the differences
           between them as well as other useful information like the number of lines, comments,
           tool changes and more.
-      </p>
-
-      <p>
-          Click the "Choose Files" button to get started.
       </p>`;
 
-    this.element.appendChild(input);
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = this.onFileChange;
+    input.style.display = 'none';
+
+    const label = document.createElement('label');
+    label.className = 'button';
+    label.style.marginLeft = 'auto';
+    label.style.marginRight = 'auto';
+    label.style.marginTop = '0.5rem';
+    label.innerText = 'Select Gcode Files';
+
+    label.appendChild(input);
+    this.element.appendChild(label);
     return this.element;
   }
 }

@@ -25,6 +25,10 @@ $text-light-2: rgba(60, 60, 60, 0.66);
 $text-dark-1: $white;
 $text-dark-2: rgba(235, 235, 235, 0.64);
 
+$light-blue-harsh: #2e75a5;
+$light-blue: #2980b9;
+$light-blue-soft: #4fa6e0;
+
 // Semantic color variables
 :root {
   --color-background: #{$white};
@@ -36,6 +40,10 @@ $text-dark-2: rgba(235, 235, 235, 0.64);
 
   --color-heading: #{$text-light-1};
   --color-text: #{$text-light-1};
+
+  --color-primary-harsh: #{$light-blue-harsh};
+  --color-primary: #{$light-blue};
+  --color-primary-soft: #{$light-blue-soft};
 
   --section-gap: 160px;
 }

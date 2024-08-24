@@ -69,8 +69,6 @@ X24. Y9.
 G80
 M05`
 
-let highlightedCode = new GcodeViewer(code).render();
-
 export default class ComparisonResultView {
   private fragment: DocumentFragment;
   private header: HTMLHeadingElement;
@@ -82,9 +80,10 @@ export default class ComparisonResultView {
   }
     
   render() {
+    this.fragment = document.createDocumentFragment();
     this.fragment.appendChild(this.header);
 
-    const statsContainer = new HTMLDivElement();
+    const statsContainer = document.createElement('div');
     statsContainer.className = 'stats';
     statsContainer.innerHTML = `
       <div class="stat">
@@ -103,6 +102,7 @@ export default class ComparisonResultView {
 
     this.fragment.appendChild(statsContainer);
 
+    let highlightedCode = new GcodeViewer(code).render();
     this.fragment.appendChild(highlightedCode);
 
     return this.fragment;
